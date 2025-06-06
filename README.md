@@ -34,8 +34,48 @@
 - [x] Отправка на сервер
 - [x] Попап об успешной отправке (в стиле сайта)
 
-<!-- ## Как запустить
+## Как запустить
+
+### NPM
+
+```bash
+npm install
+```
+
+dev-среда
 
 ```bash
 npm run dev
-``` -->
+```
+
+prod-среда
+
+```bash
+npm run build
+```
+
+```bash
+npm run start
+```
+
+### YARN
+
+```bash
+yarn
+```
+
+dev-среда
+
+```bash
+yarn dev
+```
+
+prod-среда
+
+```bash
+yarn build
+```
+
+```bash
+yarn start
+```
