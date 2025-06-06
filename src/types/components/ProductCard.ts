@@ -1,6 +1,6 @@
-export type CardProps = {
+export type ProductEntity = {
   id: number;
-  imageUrl: string;
+  image_url: string;
   title: string;
   description: string;
   price: number;

@@ -1,16 +1,16 @@
-import { CardProps } from '@/types/components/Card';
-import { Card } from '@components/ui/Card';
+import { ProductCard } from '@/components/ui/ProductCard';
+import { ProductEntity } from '@/types/components/ProductCard';
 import styles from './CardList.module.css';
 
-export const CardList = ({ items }: { items: Array<CardProps> }) => {
+export const CardList = ({ items }: { items: Array<ProductEntity> }) => {
   const isEmpty = !items || items.length === 0;
 
   return (
     <>
       {!isEmpty ? (
         <ul className={styles.list}>
-          {items.map((item: CardProps) => (
-            <Card key={item.id} {...item} />
+          {items.map((item: ProductEntity) => (
+            <ProductCard key={item.id} {...item} />
           ))}
         </ul>
       ) : (
