@@ -11,7 +11,7 @@ export const ProductCard = ({
   price,
 }: ProductEntity) => {
   return (
-    <li className={styles.card}>
+    <div className={styles.card}>
       <Image
         width={281}
         height={366}
@@ -22,6 +22,6 @@ export const ProductCard = ({
       <p className={styles.description}>{description}</p>
       <p className={styles.price}>Цена: {price}₽</p>
       <ProductButton {...{ id, title, price }} />
-    </li>
+    </div>
   );
 };

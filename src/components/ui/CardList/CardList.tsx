@@ -1,20 +1,30 @@
-import { ProductCard } from '@/components/ui/ProductCard';
-import { ProductEntity } from '@/types/ProductCard';
 import styles from './CardList.module.css';
 
-export const CardList = ({ items }: { items: Array<ProductEntity> }) => {
+type CardListProps<T> = {
+  items: Array<T>;
+  renderCard: (item: T) => React.ReactNode;
+  emptyMessage?: string;
+};
+
+export const CardList = <T,>({
+  items,
+  renderCard,
+  emptyMessage = 'Ничего не найдено',
+}: CardListProps<T>) => {
   const isEmpty = !items || items.length === 0;
 
   return (
     <>
       {!isEmpty ? (
         <ul className={styles.list}>
-          {items.map((item: ProductEntity) => (
-            <ProductCard key={item.id} {...item} />
+          {items.map((item) => (
+            <li key={(item as unknown as { id: number }).id}>
+              {renderCard(item)}
+            </li>
           ))}
         </ul>
       ) : (
-        <p className={styles.empty}>Ничего не найдено</p>
+        <p className={styles.empty}>{emptyMessage}</p>
       )}
     </>
   );

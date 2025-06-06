@@ -67,3 +67,21 @@
 .button:disabled {
   opacity: 0.8;
 }
+
+@media(max-width: 768px) {
+  .cart {
+    width: 100%;
+  }
+
+  .phoneWrapper {
+    font-size: 24px;
+  }
+
+  .phoneInput {
+    font-size: 24px;
+  }
+
+  .button {
+    font-size: 24px;
+  }
+}
