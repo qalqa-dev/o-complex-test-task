@@ -1,0 +1,14 @@
+.cart {
+  background    : var(--foreground);
+  color         : var(--background);
+  border-radius : 15px;
+  padding       : 10px;
+  display       : flex;
+  flex-direction: column;
+}
+
+.item {
+  display        : flex;
+  width          : 50%;
+  justify-content: space-between;
+}

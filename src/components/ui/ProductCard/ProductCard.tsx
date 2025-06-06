@@ -1,8 +1,10 @@
-import { ProductEntity } from '@/types/components/ProductCard';
+import { ProductEntity } from '@/types/ProductCard';
 import Image from 'next/image';
+import { ProductButton } from '../ProductButton';
 import styles from './ProductCard.module.css';
 
 export const ProductCard = ({
+  id,
   title,
   description,
   image_url,
@@ -10,18 +12,16 @@ export const ProductCard = ({
 }: ProductEntity) => {
   return (
     <li className={styles.card}>
-      {image_url && (
-        <Image
-          width={281}
-          height={366}
-          src={image_url} // спорный момент т.к ссылка не проверяется и может залететь xss, надо написать прокси
-          alt={`${title} image`}
-        ></Image>
-      )}
+      <Image
+        width={281}
+        height={366}
+        src={image_url || ''} //TODO: переделать
+        alt={`${title} image`}
+      />
       <h3>{title}</h3>
       <p className={styles.description}>{description}</p>
       <p className={styles.price}>Цена: {price}₽</p>
-      <button className={styles.button}>Купить</button>
+      <ProductButton {...{ id, title, price }} />
     </li>
   );
 };

@@ -1,4 +1,4 @@
-import { ProductEntity } from '@/types/components/ProductCard';
+import { ProductEntity } from '@/types/ProductCard';
 import { apiClient } from './client';
 
 export const productsApi = {

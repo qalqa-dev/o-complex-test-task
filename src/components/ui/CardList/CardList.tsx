@@ -1,5 +1,5 @@
 import { ProductCard } from '@/components/ui/ProductCard';
-import { ProductEntity } from '@/types/components/ProductCard';
+import { ProductEntity } from '@/types/ProductCard';
 import styles from './CardList.module.css';
 
 export const CardList = ({ items }: { items: Array<ProductEntity> }) => {
