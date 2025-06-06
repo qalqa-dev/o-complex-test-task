@@ -15,7 +15,7 @@ export const ProductCard = ({
       <Image
         width={281}
         height={366}
-        src={image_url || ''} //TODO: переделать
+        src={image_url || ''}
         alt={`${title} image`}
       />
       <h3>{title}</h3>

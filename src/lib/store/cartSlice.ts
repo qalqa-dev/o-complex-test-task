@@ -1,13 +1,30 @@
 import { CartItem } from '@/types/CartItem';
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, Middleware, PayloadAction } from '@reduxjs/toolkit';
 
 interface CartState {
   items: CartItem[];
 }
 
-const initialState: CartState = {
-  items: [],
+const CART_STORAGE_KEY = 'cartState';
+
+const loadStateFromLocalStorage = (): CartState => {
+  if (typeof window === 'undefined') {
+    return { items: [] };
+  }
+
+  try {
+    const serializedState = localStorage.getItem(CART_STORAGE_KEY);
+    if (serializedState === null) {
+      return { items: [] };
+    }
+    return JSON.parse(serializedState) as CartState;
+  } catch (error) {
+    console.warn('Failed to load cart state from localStorage', error);
+    return { items: [] };
+  }
 };
+
+const initialState: CartState = loadStateFromLocalStorage();
 
 export const cartSlice = createSlice({
   name: 'cart',
@@ -52,6 +69,26 @@ export const cartSlice = createSlice({
     },
   },
 });
+
+export const cartLocalStorageMiddleware: Middleware =
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  (store) => (next) => (action: any) => {
+    const result = next(action);
+
+    if (action.type.startsWith('cart/')) {
+      if (typeof window !== 'undefined') {
+        const cartState = store.getState().cart;
+        try {
+          const serializedState = JSON.stringify(cartState);
+          localStorage.setItem(CART_STORAGE_KEY, serializedState);
+        } catch (error) {
+          console.warn('Failed to save cart state to localStorage', error);
+        }
+      }
+    }
+
+    return result;
+  };
 
 export const { addToCart, updateCartItem, removeFromCart, clearCart } =
   cartSlice.actions;
